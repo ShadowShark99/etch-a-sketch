@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container"></div>
+  <script>
+    const sketchBoard = document.querySelector('.container');
+    sketchBoard.style.display = 'flex';
+    sketchBoard.style.flexDirection = 'column';
+    for(let i = 0; i < 16; i++)
+    {
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      for(let j = 0; j < 16; j++)
+      {
+        const cell = document.createElement('div');
+        // cell.style.width = '50px';
+        // cell.style.height = '50px';
+        // cell.style.border = '1px solid black';
+        // cell.style.display = 'inline-block';
+        cell.textContent = "balls";
+        row.appendChild(cell);
+      }
+      sketchBoard.appendChild(row);
+    }
+
+  </script>
+</body>
+</html>
