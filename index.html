@@ -18,9 +18,31 @@
       for(let j = 0; j < 16; j++)
       {
         const cell = document.createElement('div');
-        // cell.style.width = '50px';
-        // cell.style.height = '50px';
+        cell.style.width = '60px';
+        cell.style.height = '60px';
         // cell.style.border = '1px solid black';
+        if((i + j) % 2 === 0)
+        {
+          cell.style.backgroundColor = 'lightcoral';
+        }
+        else
+        {
+          cell.style.backgroundColor = 'lightblue';
+        }
+        cell.addEventListener('mouseover', () => {
+          cell.style.backgroundColor = 'lightgray';
+        });
+        cell.addEventListener('mouseout', () => {
+          if((i + j) % 2 === 0)
+          {
+            cell.style.backgroundColor = 'lightcoral';
+          }
+          else
+          {
+            cell.style.backgroundColor = 'lightblue';
+          }
+        });
+        
         // cell.style.display = 'inline-block';
         cell.textContent = "balls";
         row.appendChild(cell);
