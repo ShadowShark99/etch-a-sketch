@@ -6,33 +6,26 @@
   <title>Document</title>
 </head>
 <body>
+  <button class="size">Change the size</button>
   <div class="container"></div>
   <script>
+    const width = 960;
     const sketchBoard = document.querySelector('.container');
     sketchBoard.style.display = 'flex';
     sketchBoard.style.flexDirection = 'column';
-    for(let i = 0; i < 16; i++)
-    {
-      const row = document.createElement('div');
-      row.style.display = 'flex';
-      for(let j = 0; j < 16; j++)
+    function generateGrid(cellCount){
+      sketchBoard.innerHTML = '';
+      for(let i = 0; i < cellCount; i++)
       {
-        const cell = document.createElement('div');
-        cell.style.width = '60px';
-        cell.style.height = '60px';
-        // cell.style.border = '1px solid black';
-        if((i + j) % 2 === 0)
+
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        for(let j = 0; j < cellCount; j++)
         {
-          cell.style.backgroundColor = 'lightcoral';
-        }
-        else
-        {
-          cell.style.backgroundColor = 'lightblue';
-        }
-        cell.addEventListener('mouseover', () => {
-          cell.style.backgroundColor = 'lightgray';
-        });
-        cell.addEventListener('mouseout', () => {
+          const cell = document.createElement('div');
+          cell.style.width = `${width / cellCount}px`;
+          cell.style.height = `${width / cellCount}px`;
+          // cell.style.border = '1px solid black';
           if((i + j) % 2 === 0)
           {
             cell.style.backgroundColor = 'lightcoral';
@@ -41,14 +34,28 @@
           {
             cell.style.backgroundColor = 'lightblue';
           }
-        });
-        
-        // cell.style.display = 'inline-block';
-        cell.textContent = "balls";
-        row.appendChild(cell);
+          cell.addEventListener('mouseover', () => {
+            cell.style.opacity = '0.5';
+          });
+          cell.addEventListener('mouseout', () => {
+            cell.style.opacity = '1';
+          });
+          
+          // cell.style.display = 'inline-block';
+          cell.textContent = "balls";
+          row.appendChild(cell);
+        }
+        sketchBoard.appendChild(row);
       }
-      sketchBoard.appendChild(row);
     }
+    generateGrid(16);
+    const sizeButton = document.querySelector("button");
+    sizeButton.addEventListener('click', () => {
+      const rowCount = prompt("Enter row and col count");
+      //const cells = document.querySelectorAll('.container div div');
+      console.log(rowCount);
+      generateGrid(rowCount);
+    });
 
   </script>
 </body>
