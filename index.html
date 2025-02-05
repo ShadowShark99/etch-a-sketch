@@ -14,6 +14,8 @@
     sketchBoard.style.display = 'flex';
     sketchBoard.style.flexDirection = 'column';
     function generateGrid(cellCount){
+      cellCount = Math.min(cellCount, 100);
+      cellCount = Math.max(cellCount, 1);
       sketchBoard.innerHTML = '';
       for(let i = 0; i < cellCount; i++)
       {
@@ -25,16 +27,19 @@
           const cell = document.createElement('div');
           cell.style.width = `${width / cellCount}px`;
           cell.style.height = `${width / cellCount}px`;
+          cell.style.border = '.1px solid black';
+          cell.style.boxSizing = 'border-box';
           // cell.style.border = '1px solid black';
-          if((i + j) % 2 === 0)
-          {
-            cell.style.backgroundColor = 'lightcoral';
-          }
-          else
-          {
-            cell.style.backgroundColor = 'lightblue';
-          }
+          // if((i + j) % 2 === 0)
+          // {
+          //   cell.style.backgroundColor = 'lightcoral';
+          // }
+          // else
+          // {
+          //   cell.style.backgroundColor = 'lightblue';
+          // }
           cell.addEventListener('mouseover', () => {
+            cell.style.backgroundColor = 'black';
             cell.style.opacity = '0.5';
           });
           cell.addEventListener('mouseout', () => {
@@ -51,7 +56,7 @@
     generateGrid(16);
     const sizeButton = document.querySelector("button");
     sizeButton.addEventListener('click', () => {
-      const rowCount = prompt("Enter row and col count");
+      const rowCount = prompt("Enter row and col count (max 100)");
       //const cells = document.querySelectorAll('.container div div');
       console.log(rowCount);
       generateGrid(rowCount);
